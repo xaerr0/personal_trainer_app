@@ -5,6 +5,8 @@ public class Trainer {
     String first_name;
 
     String last_name;
+    public Trainer() {
+    }
 
     public Trainer(int trainer_id) {
         this.trainer_id = trainer_id;
