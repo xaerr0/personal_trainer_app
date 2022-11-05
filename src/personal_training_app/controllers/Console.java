@@ -76,54 +76,57 @@ public class Console {
 
 
     public void searchWorkout() {
-        int choice;
+        int choice = 0;
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Search by: ");
-        System.out.println("1) Length of workout");
-        System.out.println("2) Workout type");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid option. Please either select 1) or 2)");
-            // TODO add option to quit here
-            System.out.println("(q to quit)");
-            scanner.next();
-        }
-        if (scanner.hasNextInt()) {
-            choice = scanner.nextInt();
-            if (choice == 1) {
-                workoutLength();
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Search by: ");
+            System.out.println("1) Length of workout");
+            System.out.println("2) Workout type");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice != 1 && choice != 2) {
+                    System.out.println("Invalid option. Please select either 1) or 2)");
+                } else if (choice == 1) {
+                    workoutLength();
+                }
+                if (choice == 2) {
+                    // logic for different workout types
+                }
             }
-            if (choice == 2) {
-                // logic for different workout types
-            }
-        }
+        } while (choice != 1 && choice != 2);
     }
 
+
     public void workoutLength() {
-        int choice;
+        int choice = 0;
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("1) 30 min workouts");
-        System.out.println("2) 45 min workouts");
-        System.out.println("3) 60 min workouts");
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid option. Please either select 1), 2), or 3)");
-            // TODO add option to quit here
-            System.out.println("(q to quit)");
-            scanner.next();
-        }
-        if (scanner.hasNextInt()) {
-            choice = scanner.nextInt();
-            if (choice == 1) {
-                System.out.println("List of 30 min workouts...");
-            }
-            if (choice == 2) {
-                System.out.println("List of 45 min workouts...");
-            }
-            if (choice == 3) {
-                System.out.println("List of 60 min workouts...");
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1) 30 min workouts");
+            System.out.println("2) 45 min workouts");
+            System.out.println("3) 60 min workouts");
 
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
             }
-        }
+            // if neither 1, 2, nor 3 are entered
+            if (choice != 1 && choice != 2 && choice != 3) {
+                System.out.println("Invalid option. Please select either 1), 2) or 3)");
+            } else if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice == 1) {
+                    System.out.println("List of 30 min workouts...");
+                }
+                if (choice == 2) {
+                    System.out.println("List of 45 min workouts...");
+                }
+                if (choice == 3) {
+                    System.out.println("List of 60 min workouts...");
+                }
+            }
+            // loop while 1 - 3 are not entered
+        } while (choice != 1 && choice != 2 && choice != 3);
     }
 }
