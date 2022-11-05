@@ -1,4 +1,6 @@
-package personal_training_app;
+package personal_training_app.controllers;
+
+import personal_training_app.controllers.Console;
 
 public class Controller {
 

@@ -1,13 +1,14 @@
-package personal_training_app;
+package personal_training_app.model;
 
-public class Client {
-
+public class Trainer {
     Long id;
     String firstName;
     String lastName;
-    String routine;
 
-    public Client(Long id) {
+    public Trainer() {
+    }
+
+    public Trainer(Long id) {
         this.id = id;
     }
 
@@ -35,21 +36,12 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getRoutine() {
-        return routine;
-    }
-
-    public void setRoutine(String routine) {
-        this.routine = routine;
-    }
-
     @Override
     public String toString() {
-        return "Clients{" +
-               "id=" + id +
+        return "Trainers{" +
+               "trainer_id=" + id +
                ", first_name='" + firstName + '\'' +
                ", last_name='" + lastName + '\'' +
-               ", routine='" + routine + '\'' +
                '}';
     }
 }
