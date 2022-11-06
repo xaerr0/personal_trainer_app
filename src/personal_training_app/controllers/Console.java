@@ -87,12 +87,13 @@ public class Console {
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
                 if (choice != 1 && choice != 2) {
-                    System.out.println("Invalid option. Please select either 1) or 2)");
+                    System.out.println("Selection not found. Please select either 1) or 2)");
                 } else if (choice == 1) {
                     workoutLength();
                 }
                 if (choice == 2) {
                     // logic for different workout types
+                    workoutType();
                 }
             }
         } while (choice != 1 && choice != 2);
@@ -110,23 +111,59 @@ public class Console {
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
+
+                // if neither 1, 2, nor 3 are entered
+                if (choice != 1 && choice != 2 && choice != 3) {
+                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
+                } else if (scanner.hasNextInt()) {
+                    choice = scanner.nextInt();
+                    if (choice == 1) {
+                        System.out.println("List of 30 min workouts...");
+                    }
+                    if (choice == 2) {
+                        System.out.println("List of 45 min workouts...");
+                    }
+                    if (choice == 3) {
+                        System.out.println("List of 60 min workouts...");
+                    }
+
+                    // loop while 1 - 3 are not entered
+                    // TODO after wrong choice, 1 - 3 has to be entered twice
+
+                }
             }
-            // if neither 1, 2, nor 3 are entered
-            if (choice != 1 && choice != 2 && choice != 3) {
-                System.out.println("Invalid option. Please select either 1), 2) or 3)");
-            } else if (scanner.hasNextInt()) {
+        } while (choice != 1 && choice != 2 && choice != 3);
+
+    }
+
+
+    public void workoutType() {
+        int choice = 0;
+
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1) Strength Workouts");
+            System.out.println("2) Cardio Workouts");
+            System.out.println("3) Hypertrophy Workouts");
+
+            if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                if (choice == 1) {
-                    System.out.println("List of 30 min workouts...");
+                if (choice != 1 && choice != 2 && choice != 3) {
+                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
+                } else if (choice == 1) {
+                    System.out.println("List of Strength Workouts...");
                 }
                 if (choice == 2) {
-                    System.out.println("List of 45 min workouts...");
+                    System.out.println("List of Cardio Workouts...");
                 }
                 if (choice == 3) {
-                    System.out.println("List of 60 min workouts...");
+                    System.out.println("List of Hypertrophy Workouts...");
                 }
             }
-            // loop while 1 - 3 are not entered
+
         } while (choice != 1 && choice != 2 && choice != 3);
     }
+
 }
+
+
