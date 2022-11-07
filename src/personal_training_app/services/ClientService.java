@@ -23,7 +23,7 @@ public class ClientService {
 
 
     public Client getClient(Long id) {
-        String sql = "SELECT * FROM client WHERE id = " + id + ";";
+        String sql = "SELECT * FROM client WHERE clientid = " + id + ";";
         Client client = null;
         try {
             Statement statement = connection.createStatement();
@@ -94,7 +94,7 @@ public class ClientService {
         List<Client> clientList = new ArrayList<>();
         while (resultSet.next()) {
             Client client = new Client();
-            client.setId(resultSet.getLong("id"));
+            client.setId(resultSet.getLong("clientid"));
             client.setFirstName(resultSet.getString("first_name"));
             client.setLastName(resultSet.getString("last_name"));
             client.setEmail(resultSet.getString("email"));
