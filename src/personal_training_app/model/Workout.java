@@ -4,6 +4,7 @@ public class Workout {
     Long id;
     String name;
     String type;
+    int length;
 
     public Long getId() {
         return id;
@@ -33,12 +34,23 @@ public class Workout {
         this.id = id;
     }
 
+    public int getLength() {
+        return length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+
     @Override
     public String toString() {
         return "Workout{" +
                "id=" + id +
                ", name='" + name + '\'' +
                ", type='" + type + '\'' +
+               ", length=" + length +
                '}';
     }
+
 }
