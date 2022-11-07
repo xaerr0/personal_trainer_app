@@ -5,7 +5,7 @@ public class Client {
     Long id;
     String firstName;
     String lastName;
-    String routine;
+    String email;
 
     public Client(Long id) {
         this.id = id;
@@ -39,13 +39,14 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getRoutine() {
-        return routine;
+    public String getEmail() {
+        return email;
     }
 
-    public void setRoutine(String routine) {
-        this.routine = routine;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
 
     @Override
     public String toString() {
@@ -53,7 +54,7 @@ public class Client {
                "id=" + id +
                ", first_name='" + firstName + '\'' +
                ", last_name='" + lastName + '\'' +
-               ", routine='" + routine + '\'' +
+               ", email='" + email + '\'' +
                '}';
     }
 }

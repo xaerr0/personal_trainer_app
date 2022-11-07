@@ -50,7 +50,7 @@ public class Console {
         switch (choice) {
             case '1':
                 System.out.println("List of current clients: ");
-                // TODO getAllClients
+                clientService.getAllClients();
             case '2':
                 System.out.println("List of Workout Programs: ");
                 // TODO getAllWorkouts
@@ -165,5 +165,3 @@ public class Console {
     }
 
 }
-
-
