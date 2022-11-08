@@ -6,6 +6,13 @@ public class Workout {
     String type;
     int length;
 
+    public Workout() {
+    }
+
+    public Workout(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -30,10 +37,6 @@ public class Workout {
         this.type = type;
     }
 
-    public Workout(Long id) {
-        this.id = id;
-    }
-
     public int getLength() {
         return length;
     }
@@ -45,12 +48,9 @@ public class Workout {
 
     @Override
     public String toString() {
-        return "Workout{" +
-               "id=" + id +
-               ", name='" + name + '\'' +
-               ", type='" + type + '\'' +
-               ", length=" + length +
-               '}';
+        return "Workout ID = " + id + ", Workout Name = " + name + ", Type = " + type +
+               ", Length = " + length + " min";
     }
+
 
 }

@@ -3,6 +3,7 @@ package personal_training_app.controllers;
 import personal_training_app.model.Client;
 import personal_training_app.model.Trainer;
 import personal_training_app.services.ClientService;
+import personal_training_app.services.WorkoutService;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class Console {
     Trainer trainer = new Trainer();
     ClientService clientService = new ClientService();
+    WorkoutService workoutService = new WorkoutService();
 
     // Main menu
     public void logIn() {
@@ -50,16 +52,19 @@ public class Console {
 
         System.out.println("\n");
 
+
         switch (choice) {
             case '1':
-                System.out.println("List of current clients: ");
+                System.out.println("List of Current Clients: ");
                 clientService.getAllClients();
+                break;
+
             case '2':
                 System.out.println("List of Workout Programs: ");
-                // TODO getAllWorkouts
+                workoutService.getAllWorkouts();
                 break;
             case '3':
-                System.out.println("Please enter Client ID");
+                System.out.println("Please Enter Client ID");
                 searchClient();
                 break;
             case '4':

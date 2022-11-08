@@ -53,11 +53,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Clients{" +
-               "id=" + id +
-               ", first_name='" + firstName + '\'' +
-               ", last_name='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               '}';
+        return "Client ID = " + id + ", First Name = " + firstName + ", Last Name = " + lastName
+                + ", Email = " + email;
     }
 }

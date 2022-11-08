@@ -83,6 +83,22 @@ public class TrainerService {
         return false;
     }
 
+    public Boolean deleteTrainer(Long id) {
+        try {
+            String sql = "DELETE FROM trainer WHERE id = " + id + ";";
+            PreparedStatement statement = connection.prepareStatement(sql);
+
+            int rowsDeleted = statement.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Trainer has been deleted successfully!");
+            }
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
     private List<Trainer> mapToTrainer(ResultSet resultSet) throws SQLException {
         List<Trainer> trainerList = new ArrayList<>();
         while (resultSet.next()) {
