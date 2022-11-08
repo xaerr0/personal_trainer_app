@@ -4,6 +4,7 @@ public class Trainer {
     Long id;
     String firstName;
     String lastName;
+    String email;
 
     public Trainer() {
     }
@@ -36,12 +37,23 @@ public class Trainer {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "Trainers{" +
-               "trainer_id=" + id +
-               ", first_name='" + firstName + '\'' +
-               ", last_name='" + lastName + '\'' +
+        return "Trainer{" +
+               "id=" + id +
+               ", firstName='" + firstName + '\'' +
+               ", lastName='" + lastName + '\'' +
+               ", email='" + email + '\'' +
                '}';
     }
+
+
 }

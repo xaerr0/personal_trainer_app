@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ClientService {
 
-
     DatabaseConnection databaseConnection;
     Connection connection;
     ResultSet resultSet;
@@ -18,7 +17,6 @@ public class ClientService {
     public ClientService() {
         databaseConnection = new DatabaseConnection("personal_trainingdb");
         connection = databaseConnection.getConnection();
-
     }
 
 
@@ -37,7 +35,7 @@ public class ClientService {
     }
 
     public Client getClientLastName(String lastName) {
-        String sql = "SELECT * FROM client WHERE last_name = " + lastName + ";";
+        String sql = "SELECT * FROM client WHERE last_name LIKE '" + lastName + "%';";
         Client client = null;
         try {
             Statement statement = connection.createStatement();

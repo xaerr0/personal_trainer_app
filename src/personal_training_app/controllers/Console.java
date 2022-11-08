@@ -1,5 +1,6 @@
 package personal_training_app.controllers;
 
+import personal_training_app.model.Client;
 import personal_training_app.model.Trainer;
 import personal_training_app.services.ClientService;
 
@@ -41,7 +42,9 @@ public class Console {
         System.out.println("2) View All Workout Programs");
         System.out.println("3) Search a Client");
         System.out.println("4) Search Workout Program");
-        System.out.println("5) Logout");
+        System.out.println("5) Enter New Client");
+        System.out.println("6) Enter New Trainer");
+        System.out.println("7) Logout");
         System.out.println("Choose one (q to quit): ");
         choice = System.in.read();
 
@@ -63,6 +66,11 @@ public class Console {
                 searchWorkout();
                 break;
             case '5':
+                newClient();
+            case '6':
+                newTrainer();
+
+            case '7':
                 System.out.println("Logging out...");
                 logIn();
                 break;
@@ -181,10 +189,10 @@ public class Console {
                 } else if (choice == 1) {
                     System.out.println("Please Enter Client ID");
                     clientId = scanner.nextLong();
-                clientService.getClientid(clientId);
+                    clientService.getClientid(clientId);
 
                 }
-                // TODO not working!
+                //
                 if (choice == 2) {
                     System.out.println("Please Enter Last Name");
                     lastName = scanner.next();
@@ -195,4 +203,38 @@ public class Console {
         } while (choice != 1 && choice != 2);
     }
 
+// TODO Enter New Client
+
+    private void newClient() {
+        System.out.println("Please Enter Client's First Name");
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+        Client client = new Client();
+        String entry = scanner.next();
+        do {
+            if (scanner.hasNext()) {
+
+                client.setFirstName(entry);
+                System.out.println("1) Length of workout");
+                System.out.println("2) Workout type");
+
+                if (scanner.hasNextInt()) {
+                    choice = scanner.nextInt();
+                    if (choice != 1 && choice != 2) {
+                        System.out.println("Selection not found. Please select either 1) or 2)");
+                    } else if (choice == 1) {
+                        workoutLength();
+                    }
+                    if (choice == 2) {
+
+                        workoutType();
+                    }
+                }
+            }
+
+        } while (choice != 1 && choice != 2);
+    }
+
+    private void newTrainer() {
+    }
 }
