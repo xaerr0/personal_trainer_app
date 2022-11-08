@@ -22,8 +22,22 @@ public class ClientService {
     }
 
 
-    public Client getClient(Long id) {
+    public Client getClientid(Long id) {
         String sql = "SELECT * FROM client WHERE clientid = " + id + ";";
+        Client client = null;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            client = mapToClient(resultSet).get(0);
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return new Client();
+    }
+
+    public Client getClientLastName(String lastName) {
+        String sql = "SELECT * FROM client WHERE last_name = " + lastName + ";";
         Client client = null;
         try {
             Statement statement = connection.createStatement();

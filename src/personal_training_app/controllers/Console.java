@@ -37,9 +37,9 @@ public class Console {
         System.out.println("Please select an option");
         System.out.println("\n");
 
-        System.out.println("1) View Clients");
-        System.out.println("2) View Workout Programs");
-        System.out.println("3) Search Client");
+        System.out.println("1) View All Clients");
+        System.out.println("2) View All Workout Programs");
+        System.out.println("3) Search a Client");
         System.out.println("4) Search Workout Program");
         System.out.println("5) Logout");
         System.out.println("Choose one (q to quit): ");
@@ -57,7 +57,7 @@ public class Console {
                 break;
             case '3':
                 System.out.println("Please enter Client ID");
-                // getClient();
+                searchClient();
                 break;
             case '4':
                 searchWorkout();
@@ -92,7 +92,7 @@ public class Console {
                     workoutLength();
                 }
                 if (choice == 2) {
-                    // logic for different workout types
+
                     workoutType();
                 }
             }
@@ -162,6 +162,37 @@ public class Console {
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
+    }
+
+    public void searchClient() {
+        int choice = 0;
+        Long clientId = null;
+        String lastName = null;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Search by: ");
+            System.out.println("1) Client ID");
+            System.out.println("2) Client Last Name");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice != 1 && choice != 2) {
+                    System.out.println("Selection not found. Please select either 1) or 2)");
+                } else if (choice == 1) {
+                    System.out.println("Please Enter Client ID");
+                    clientId = scanner.nextLong();
+                clientService.getClientid(clientId);
+
+                }
+                // TODO not working!
+                if (choice == 2) {
+                    System.out.println("Please Enter Last Name");
+                    lastName = scanner.next();
+                    clientService.getClientLastName(lastName);
+
+                }
+            }
+        } while (choice != 1 && choice != 2);
     }
 
 }
