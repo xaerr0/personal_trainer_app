@@ -28,62 +28,62 @@ public class Console {
         if (scanner.hasNextInt()) {
             System.out.println("Trainer ID found.. Welcome " + trainer.getFirstName() + "!");
         }
-        try {
-            consoleMenu();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        consoleMenu();
     }
 
-    public void consoleMenu() throws IOException {
+    public void consoleMenu() {
         int choice;
         System.out.println("Please select an option");
         System.out.println("\n");
+        try {
+            System.out.println("1) View All Clients");
+            System.out.println("2) View All Workout Programs");
+            System.out.println("3) Search a Client");
+            System.out.println("4) Search Workout Program");
+            System.out.println("5) Enter New Client");
+            System.out.println("6) Enter New Trainer");
+            System.out.println("7) Logout");
+            System.out.println("Choose one (q to quit): ");
+            choice = System.in.read();
 
-        System.out.println("1) View All Clients");
-        System.out.println("2) View All Workout Programs");
-        System.out.println("3) Search a Client");
-        System.out.println("4) Search Workout Program");
-        System.out.println("5) Enter New Client");
-        System.out.println("6) Enter New Trainer");
-        System.out.println("7) Logout");
-        System.out.println("Choose one (q to quit): ");
-        choice = System.in.read();
-
-        System.out.println("\n");
+            System.out.println("\n");
 
 
-        switch (choice) {
-            case '1':
-                System.out.println("List of Current Clients: ");
-                clientService.getAllClients();
-                break;
-
-            case '2':
-                System.out.println("List of Workout Programs: ");
-                workoutService.getAllWorkouts();
-                break;
-            case '3':
-                System.out.println("Please Enter Client ID");
-                searchClient();
-                break;
-            case '4':
-                searchWorkout();
-                break;
-            case '5':
-                newClient();
-            case '6':
-                newTrainer();
-
-            case '7':
-                System.out.println("Logging out...");
-                logIn();
-                break;
-            case 'q':
-                break;
-            default:
-                System.out.println("Selection not found.");
-                consoleMenu();
+            switch (choice) {
+                case '1':
+                    System.out.println("List of Current Clients: ");
+                    clientService.getAllClients();
+                    //TODO back to console also goes to default? por que?
+                    consoleMenu();
+                    break;
+                case '2':
+                    System.out.println("List of Workout Programs: ");
+                    workoutService.getAllWorkouts();
+                    consoleMenu();
+                    break;
+                case '3':
+                    System.out.println("Please Enter Client ID");
+                    searchClient();
+                    break;
+                case '4':
+                    searchWorkout();
+                    break;
+                case '5':
+                    newClient();
+                case '6':
+                    newTrainer();
+                case '7':
+                    System.out.println("Logging out...");
+                    logIn();
+                    break;
+                case 'q':
+                    break;
+                default:
+                    System.out.println("Selection not found.");
+                    consoleMenu();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -103,6 +103,7 @@ public class Console {
                     System.out.println("Selection not found. Please select either 1) or 2)");
                 } else if (choice == 1) {
                     workoutLength();
+
                 }
                 if (choice == 2) {
 
@@ -132,12 +133,15 @@ public class Console {
                     choice = scanner.nextInt();
                     if (choice == 1) {
                         System.out.println("List of 30 min workouts...");
+                        workoutService.get30minWorkouts();
                     }
                     if (choice == 2) {
                         System.out.println("List of 45 min workouts...");
+                        workoutService.get45minWorkouts();
                     }
                     if (choice == 3) {
                         System.out.println("List of 60 min workouts...");
+                        workoutService.get60minWorkouts();
                     }
 
                     // loop while 1 - 3 are not entered
@@ -146,6 +150,7 @@ public class Console {
                 }
             }
         } while (choice != 1 && choice != 2 && choice != 3);
+
 
     }
 
@@ -168,13 +173,16 @@ public class Console {
                 }
                 if (choice == 2) {
                     System.out.println("List of Cardio Workouts...");
+                    workoutService.getCardioWorkouts();
                 }
                 if (choice == 3) {
                     System.out.println("List of Hypertrophy Workouts...");
+                    workoutService.getHypertrophyWorkouts();
                 }
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
+        consoleMenu();
     }
 
     public void searchClient() {
@@ -197,7 +205,6 @@ public class Console {
                     clientService.getClientid(clientId);
 
                 }
-                //
                 if (choice == 2) {
                     System.out.println("Please Enter Last Name");
                     lastName = scanner.next();
@@ -206,6 +213,7 @@ public class Console {
                 }
             }
         } while (choice != 1 && choice != 2);
+        consoleMenu();
     }
 
 // TODO Enter New Client
@@ -216,28 +224,11 @@ public class Console {
         int choice = 0;
         Client client = new Client();
         String entry = scanner.next();
-        do {
-            if (scanner.hasNext()) {
+        client.setFirstName(entry);
+        System.out.println("Please Enter Client's Last Name");
+        scanner.nextLine();
+        client.setLastName(entry);
 
-                client.setFirstName(entry);
-                System.out.println("1) Length of workout");
-                System.out.println("2) Workout type");
-
-                if (scanner.hasNextInt()) {
-                    choice = scanner.nextInt();
-                    if (choice != 1 && choice != 2) {
-                        System.out.println("Selection not found. Please select either 1) or 2)");
-                    } else if (choice == 1) {
-                        workoutLength();
-                    }
-                    if (choice == 2) {
-
-                        workoutType();
-                    }
-                }
-            }
-
-        } while (choice != 1 && choice != 2);
     }
 
     private void newTrainer() {

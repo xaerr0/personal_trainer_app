@@ -20,7 +20,7 @@ public class WorkoutService {
         connection = databaseConnection.getConnection();
     }
 
-    public Client getWorkoutId(Long id) {
+    public Workout getWorkoutId(Long id) {
         String sql = "SELECT * FROM client WHERE workoutid = " + id + ";";
         Client client = null;
         try {
@@ -31,11 +31,104 @@ public class WorkoutService {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
         }
-        return new Client();
+        return new Workout();
     }
 
     public List<Workout> getAllWorkouts() {
-        String sql = "SELECT * FROM workout";
+        String sql = "SELECT * FROM workout;";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+
+
+        // get workout lengths
+
+    public List<Workout> get30minWorkouts() {
+        String sql = "SELECT * FROM workout WHERE length = 30;";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+    public List<Workout> get45minWorkouts() {
+        String sql = "SELECT * FROM workout WHERE length = 45;";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+
+    public List<Workout> get60minWorkouts() {
+        String sql = "SELECT * FROM workout WHERE length = 45;";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+
+    // get workout types
+
+    public List<Workout> getCardioWorkouts() {
+        String sql = "SELECT * FROM workout WHERE type = 'cardio';";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+    public List<Workout> getStrengthWorkouts() {
+        String sql = "SELECT * FROM workout WHERE type = 'strength';";
+        List<Workout> workouts = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            workouts = mapToWorkout(resultSet);
+
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return workouts;
+    }
+
+    public List<Workout> getHypertrophyWorkouts() {
+        String sql = "SELECT * FROM workout WHERE type = 'hypertrophy';";
         List<Workout> workouts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
