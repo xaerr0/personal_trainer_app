@@ -52,22 +52,8 @@ public class WorkoutService {
 
         // get workout lengths
 
-    public List<Workout> get30minWorkouts() {
-        String sql = "SELECT * FROM workout WHERE length = 30;";
-        List<Workout> workouts = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            workouts = mapToWorkout(resultSet);
-
-        } catch (SQLException e) {
-            System.out.println("Exception Thrown!");
-            System.out.println(e.getMessage());
-        }
-        return workouts;
-    }
-    public List<Workout> get45minWorkouts() {
-        String sql = "SELECT * FROM workout WHERE length = 45;";
+    public List<Workout> getWorkouts(int length) {
+        String sql = "SELECT * FROM workout WHERE length = " + length + ";";
         List<Workout> workouts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -81,39 +67,11 @@ public class WorkoutService {
         return workouts;
     }
 
-    public List<Workout> get60minWorkouts() {
-        String sql = "SELECT * FROM workout WHERE length = 45;";
-        List<Workout> workouts = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            workouts = mapToWorkout(resultSet);
-
-        } catch (SQLException e) {
-            System.out.println("Exception Thrown!");
-            System.out.println(e.getMessage());
-        }
-        return workouts;
-    }
 
     // get workout types
 
-    public List<Workout> getCardioWorkouts() {
-        String sql = "SELECT * FROM workout WHERE type = 'cardio';";
-        List<Workout> workouts = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            workouts = mapToWorkout(resultSet);
-
-        } catch (SQLException e) {
-            System.out.println("Exception Thrown!");
-            System.out.println(e.getMessage());
-        }
-        return workouts;
-    }
-    public List<Workout> getStrengthWorkouts() {
-        String sql = "SELECT * FROM workout WHERE type = 'strength';";
+    public List<Workout> getWorkouts(String type) {
+        String sql = "SELECT * FROM workout WHERE type = '" + type + "';";
         List<Workout> workouts = new ArrayList<>();
         try {
             Statement statement = connection.createStatement();
@@ -127,20 +85,7 @@ public class WorkoutService {
         return workouts;
     }
 
-    public List<Workout> getHypertrophyWorkouts() {
-        String sql = "SELECT * FROM workout WHERE type = 'hypertrophy';";
-        List<Workout> workouts = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
-            workouts = mapToWorkout(resultSet);
 
-        } catch (SQLException e) {
-            System.out.println("Exception Thrown!");
-            System.out.println(e.getMessage());
-        }
-        return workouts;
-    }
 
     private List<Workout> mapToWorkout(ResultSet resultSet) throws SQLException {
         List <Workout>  workoutList = new ArrayList<>();
@@ -151,8 +96,6 @@ public class WorkoutService {
             workout.setType(resultSet.getString("type"));
             workout.setLength(resultSet.getInt("length"));
             workoutList.add(workout);
-            System.out.println(workout);
-
         }
         return workoutList;
     }

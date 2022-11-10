@@ -19,8 +19,25 @@ public class ClientService {
         connection = databaseConnection.getConnection();
     }
 
+    public Client saveClient(Client client) {
+        String sql = "INSERT INTO client (first_name, last_name, email) VALUES (?, ?, ?);";
+        PreparedStatement statement = null;
+        try {
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, client.getFirstName());
+            statement.setString(2, client.getLastName());
+            statement.setString(3, client.getEmail());
+            statement.executeUpdate();
+            statement.close();
+            client = getClient(client.getEmail());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return client;
+    }
 
-    public Client getClientid(Long id) {
+
+    public Client getClient(Long id) {
         String sql = "SELECT * FROM client WHERE clientid = " + id + ";";
         Client client = null;
         try {
@@ -31,21 +48,36 @@ public class ClientService {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
         }
-        return new Client();
+        return client;
     }
 
-    public Client getClientLastName(String lastName) {
-        String sql = "SELECT * FROM client WHERE last_name LIKE '" + lastName + "%';";
+    public Client getClient(String email) {
+        String sql = "SELECT * FROM client WHERE email = ?" ;
         Client client = null;
         try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(sql);
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
             client = mapToClient(resultSet).get(0);
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
         }
-        return new Client();
+        return client;
+    }
+
+    public List<Client> getClients(String lastName) {
+        String sql = "SELECT * FROM client WHERE last_name LIKE '" + lastName + "%';";
+        List<Client> clientList = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+            clientList.addAll(mapToClient(resultSet));
+        } catch (SQLException e) {
+            System.out.println("Exception Thrown!");
+            System.out.println(e.getMessage());
+        }
+        return clientList;
     }
 
 
@@ -56,7 +88,7 @@ public class ClientService {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             clients = mapToClient(resultSet);
-            databaseConnection.closeConnection();
+//            databaseConnection.closeConnection();
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
@@ -111,8 +143,6 @@ public class ClientService {
             client.setLastName(resultSet.getString("last_name"));
             client.setEmail(resultSet.getString("email"));
             clientList.add(client);
-
-            System.out.println(client);
         }
         return clientList;
     }

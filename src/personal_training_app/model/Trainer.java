@@ -47,12 +47,8 @@ public class Trainer {
 
     @Override
     public String toString() {
-        return "Trainer{" +
-               "id=" + id +
-               ", firstName='" + firstName + '\'' +
-               ", lastName='" + lastName + '\'' +
-               ", email='" + email + '\'' +
-               '}';
+        return "Trainer ID = " + id + ", First Name = " + firstName + ", Last Name = " + lastName
+               + ", Email = " + email;
     }
 
 
