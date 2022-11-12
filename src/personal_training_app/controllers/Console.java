@@ -13,17 +13,27 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Console {
-    Trainer trainer = new Trainer();
+
     ClientService clientService = new ClientService();
     WorkoutService workoutService = new WorkoutService();
     TrainerService trainerService = new TrainerService();
 
+
+
+
     // Main menu
     public void logIn() {
+        Trainer trainer;
         Scanner scanner = new Scanner(System.in);
 
-        //
+        // TODO fix login for trainer
+
         System.out.println("Please enter in your ID:");
+        Long id = scanner.nextLong();
+
+        trainer = trainerService.getTrainer(id);
+
+
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid option. Please enter in your ID:");
             // TODO add option to quit here
@@ -86,7 +96,6 @@ public class Console {
                 consoleMenu();
 
             case 4:
-                System.out.println("Please Enter Client ID");
                 searchClient();
                 break;
             case 5:
@@ -150,35 +159,30 @@ public class Console {
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
+                List<Workout> workoutList = new ArrayList<>();
 
                 // if neither 1, 2, nor 3 are entered
                 if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1), 2) or 3)");
-                } else if (scanner.hasNextInt()) {
-                    choice = scanner.nextInt();
-                    List<Workout> workoutList = new ArrayList<>();
-                    if (choice == 1) {
-                        System.out.println("List of 30 min workouts...");
-                        workoutList = workoutService.getWorkouts(30);
-                    }
-                    if (choice == 2) {
-                        System.out.println("List of 45 min workouts...");
-                        workoutList = workoutService.getWorkouts(45);
-                    }
-                    if (choice == 3) {
-                        System.out.println("List of 60 min workouts...");
-                        workoutList = workoutService.getWorkouts(60);
-                    }
-                    System.out.println(workoutList);
-
-                    // loop while 1 - 3 are not entered
-                    // TODO after wrong choice, 1 - 3 has to be entered twice
-
+                } else if (choice == 1) {
+                    System.out.println("List of 30 min workouts...");
+                    workoutList = workoutService.getWorkouts(30);
+                }
+                if (choice == 2) {
+                    System.out.println("List of 45 min workouts...");
+                    workoutList = workoutService.getWorkouts(45);
+                }
+                if (choice == 3) {
+                    System.out.println("List of 60 min workouts...");
+                    workoutList = workoutService.getWorkouts(60);
+                }
+                // iterate through list to print
+                for (Workout workout : workoutList) {
+                    System.out.println(workout);
                 }
             }
         } while (choice != 1 && choice != 2 && choice != 3);
-
-
+        consoleMenu();
     }
 
 
@@ -208,7 +212,9 @@ public class Console {
                     System.out.println("List of Hypertrophy Workouts...");
                     workoutList = workoutService.getWorkouts("hypertrophy");
                 }
-                System.out.println(workoutList);
+                for (Workout workout : workoutList) {
+                    System.out.println(workout);
+                }
             }
 
         } while (choice != 1 && choice != 2 && choice != 3);
@@ -224,10 +230,11 @@ public class Console {
             System.out.println("Search by: ");
             System.out.println("1) Client ID");
             System.out.println("2) Client Last Name");
+            System.out.println("3) Go Back to Menu");
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                if (choice != 1 && choice != 2) {
+                if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1) or 2)");
                 } else if (choice == 1) {
                     System.out.println("Please Enter Client ID");
@@ -239,7 +246,11 @@ public class Console {
                     System.out.println("Please Enter Last Name");
                     lastName = scanner.next();
                     List<Client> clients = clientService.getClients(lastName);
-                    System.out.println(clients);
+                    for (Client clientList : clients)
+                        System.out.println(clientList);
+                }
+                if (choice == 3) {
+                    consoleMenu();
                 }
             }
         } while (choice != 1 && choice != 2);

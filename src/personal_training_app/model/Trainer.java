@@ -24,6 +24,9 @@ public class Trainer {
     public String getFirstName() {
         return firstName;
     }
+    public String getFirstName(Long id) {
+        return firstName;
+    }
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
