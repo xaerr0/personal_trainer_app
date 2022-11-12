@@ -19,31 +19,23 @@ public class Console {
     TrainerService trainerService = new TrainerService();
 
 
-
-
     // Main menu
     public void logIn() {
-        Trainer trainer;
         Scanner scanner = new Scanner(System.in);
-
-        // TODO fix login for trainer
-
-        System.out.println("Please enter in your ID:");
-        Long id = scanner.nextLong();
-
-        trainer = trainerService.getTrainer(id);
-
-
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid option. Please enter in your ID:");
-            // TODO add option to quit here
-            System.out.println("(q to quit)");
-            scanner.next();
+        try {
+            System.out.println("Please enter in your ID:");
+            if (scanner.hasNextLong()) {
+                Trainer trainer;
+                Long id = scanner.nextLong();
+                trainer = trainerService.getTrainer(id);
+                System.out.println("Trainer ID found.. Welcome " + trainer.getFirstName() + "!");
+                consoleMenu();
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Trainer ID  not found. Please try again.");
+            consoleMenu();
         }
-        if (scanner.hasNextInt()) {
-            System.out.println("Trainer ID found.. Welcome " + trainer.getFirstName() + "!");
-        }
-        consoleMenu();
     }
 
     public void consoleMenu() {
