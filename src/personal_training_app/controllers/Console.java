@@ -34,7 +34,7 @@ public class Console {
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
             System.out.println("Trainer ID  not found. Please try again.");
-            consoleMenu();
+            logIn();
         }
     }
 
@@ -44,7 +44,7 @@ public class Console {
         System.out.println("\nPlease select an option: ");
         System.out.println("1) View All Clients"); //done
         System.out.println("2) View All Workout Programs"); //done
-        System.out.println("3) View All Trainers");
+        System.out.println("3) View All Trainers"); //done
         System.out.println("4) Search a Client"); //done
         System.out.println("5) Search Workout Program");
         System.out.println("6) Enter New Client");
@@ -122,18 +122,20 @@ public class Console {
             System.out.println("Search by: ");
             System.out.println("1) Length of workout");
             System.out.println("2) Workout type");
+            System.out.println("3) Go Back to Menu");
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                if (choice != 1 && choice != 2) {
+                if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1) or 2)");
                 } else if (choice == 1) {
                     workoutLength();
-
                 }
                 if (choice == 2) {
-
                     workoutType();
+                }
+                if (choice == 3) {
+                    consoleMenu();
                 }
             }
         } while (choice != 1 && choice != 2);
@@ -208,7 +210,6 @@ public class Console {
                     System.out.println(workout);
                 }
             }
-
         } while (choice != 1 && choice != 2 && choice != 3);
         consoleMenu();
     }
@@ -249,7 +250,6 @@ public class Console {
         consoleMenu();
     }
 
-// TODO Enter New Client
 
     private void newClient() {
 
