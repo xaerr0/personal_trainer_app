@@ -18,7 +18,6 @@ public class Console {
     WorkoutService workoutService = new WorkoutService();
     TrainerService trainerService = new TrainerService();
 
-
     // Main menu
     public void logIn() {
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +36,7 @@ public class Console {
             logIn();
         }
     }
-
+    // After Login
     public void consoleMenu() {
         int choice;
         Scanner scanner = new Scanner(System.in);
@@ -47,9 +46,9 @@ public class Console {
         System.out.println("3) View All Trainers"); //done
         System.out.println("4) Search a Client"); //done
         System.out.println("5) Search Workout Program");
-        System.out.println("6) Enter New Client");
-        System.out.println("7) Enter New Trainer");
-        System.out.println("8) Delete Client");
+        System.out.println("6) Enter New Client"); //done
+        System.out.println("7) Enter New Trainer"); //done
+        System.out.println("8) Delete Client"); //
         System.out.println("9) Delete Trainer");
         System.out.println("10) Logout");
         System.out.println("Choose one (q to quit): ");
@@ -59,7 +58,6 @@ public class Console {
             choice = 11;
         }
         System.out.println("\n");
-
 
         switch (choice) {
             case 1:
@@ -133,143 +131,6 @@ public class Console {
         }
     }
 
-    private void deleteClient() {
-        System.out.println("Please enter the Client ID you would like to remove.");
-        Scanner scanner = new Scanner(System.in);
-        Long id = scanner.nextLong();
-        System.out.println("Are you sure you want to delete " + clientService.getClient(id) + "? y/n?");
-        String choice = scanner.next();
-        if (choice.equalsIgnoreCase("y")) {
-            System.out.println(clientService.getClient(id) + " has been successfully deleted.");
-            clientService.deleteClient(id);
-            consoleMenu();
-
-        } else {
-            System.out.println("Back to Menu");
-            consoleMenu();
-        }
-    }
-
-    private void deleteTrainer() {
-        System.out.println("Please enter the Trainer ID you would like to remove.");
-        Scanner scanner = new Scanner(System.in);
-        Long id = scanner.nextLong();
-        System.out.println("Are you sure you want to delete " + trainerService.getTrainer(id) + "? y/n?");
-        String choice = scanner.next();
-        if (choice.equalsIgnoreCase("y")) {
-            System.out.println(trainerService.getTrainer(id) + " has been successfully deleted.");
-            trainerService.deleteTrainer(id);
-            consoleMenu();
-
-        } else {
-            System.out.println("Back to Menu");
-            consoleMenu();
-        }
-    }
-
-
-
-
-    public void searchWorkout() {
-        int choice = 0;
-
-        do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Search by: ");
-            System.out.println("1) Length of workout");
-            System.out.println("2) Workout type");
-            System.out.println("3) Go Back to Menu");
-
-            if (scanner.hasNextInt()) {
-                choice = scanner.nextInt();
-                if (choice != 1 && choice != 2 && choice != 3) {
-                    System.out.println("Selection not found. Please select either 1) or 2)");
-                } else if (choice == 1) {
-                    workoutLength();
-                }
-                if (choice == 2) {
-                    workoutType();
-                }
-                if (choice == 3) {
-                    consoleMenu();
-                }
-            }
-        } while (choice != 1 && choice != 2);
-    }
-
-
-    public void workoutLength() {
-        int choice = 0;
-
-        do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("1) 30 min workouts");
-            System.out.println("2) 45 min workouts");
-            System.out.println("3) 60 min workouts");
-
-            if (scanner.hasNextInt()) {
-                choice = scanner.nextInt();
-                List<Workout> workoutList = new ArrayList<>();
-
-                // if neither 1, 2, nor 3 are entered
-                if (choice != 1 && choice != 2 && choice != 3) {
-                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
-                } else if (choice == 1) {
-                    System.out.println("List of 30 min workouts...");
-                    workoutList = workoutService.getWorkouts(30);
-                }
-                if (choice == 2) {
-                    System.out.println("List of 45 min workouts...");
-                    workoutList = workoutService.getWorkouts(45);
-                }
-                if (choice == 3) {
-                    System.out.println("List of 60 min workouts...");
-                    workoutList = workoutService.getWorkouts(60);
-                }
-                // iterate through list to print
-                for (Workout workout : workoutList) {
-                    System.out.println(workout);
-                }
-            }
-        } while (choice != 1 && choice != 2 && choice != 3);
-        consoleMenu();
-    }
-
-
-    public void workoutType() {
-        int choice = 0;
-
-        do {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("1) Strength Workouts");
-            System.out.println("2) Cardio Workouts");
-            System.out.println("3) Hypertrophy Workouts");
-
-            if (scanner.hasNextInt()) {
-                choice = scanner.nextInt();
-                List<Workout> workoutList = new ArrayList<>();
-                if (choice != 1 && choice != 2 && choice != 3) {
-                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
-                } else if (choice == 1) {
-                    System.out.println("List of Strength Workouts...");
-                    workoutList = workoutService.getWorkouts("strength");
-                }
-                if (choice == 2) {
-                    System.out.println("List of Cardio Workouts...");
-                    workoutList = workoutService.getWorkouts("cardio");
-                }
-                if (choice == 3) {
-                    System.out.println("List of Hypertrophy Workouts...");
-                    workoutList = workoutService.getWorkouts("hypertrophy");
-                }
-                for (Workout workout : workoutList) {
-                    System.out.println(workout);
-                }
-            }
-        } while (choice != 1 && choice != 2 && choice != 3);
-        consoleMenu();
-    }
-
     public void searchClient() {
         int choice = 0;
         Long clientId = null;
@@ -306,6 +167,32 @@ public class Console {
         consoleMenu();
     }
 
+    public void searchWorkout() {
+        int choice = 0;
+
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Search by: ");
+            System.out.println("1) Length of workout");
+            System.out.println("2) Workout type");
+            System.out.println("3) Go Back to Menu");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                if (choice != 1 && choice != 2 && choice != 3) {
+                    System.out.println("Selection not found. Please select either 1) or 2)");
+                } else if (choice == 1) {
+                    workoutLength();
+                }
+                if (choice == 2) {
+                    workoutType();
+                }
+                if (choice == 3) {
+                    consoleMenu();
+                }
+            }
+        } while (choice != 1 && choice != 2);
+    }
 
     private void newClient() {
 
@@ -355,5 +242,110 @@ public class Console {
             System.out.println("Back to Menu");
             consoleMenu();
         }
+    }
+
+    private void deleteClient() {
+        System.out.println("Please enter the Client ID you would like to remove.");
+        Scanner scanner = new Scanner(System.in);
+        Long id = scanner.nextLong();
+        System.out.println("Are you sure you want to delete " + clientService.getClient(id) + "? y/n?");
+        String choice = scanner.next();
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println(clientService.getClient(id) + " has been successfully deleted.");
+            clientService.deleteClient(id);
+            consoleMenu();
+
+        } else {
+            System.out.println("Back to Menu");
+            consoleMenu();
+        }
+    }
+
+    private void deleteTrainer() {
+        System.out.println("Please enter the Trainer ID you would like to remove.");
+        Scanner scanner = new Scanner(System.in);
+        Long id = scanner.nextLong();
+        System.out.println("Are you sure you want to delete " + trainerService.getTrainer(id) + "? y/n?");
+        String choice = scanner.next();
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println(trainerService.getTrainer(id) + " has been successfully deleted.");
+            trainerService.deleteTrainer(id);
+            consoleMenu();
+
+        } else {
+            System.out.println("Back to Menu");
+            consoleMenu();
+        }
+    }
+
+    public void workoutLength() {
+        int choice = 0;
+
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1) 30 min workouts");
+            System.out.println("2) 45 min workouts");
+            System.out.println("3) 60 min workouts");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                List<Workout> workoutList = new ArrayList<>();
+
+                // if neither 1, 2, nor 3 are entered
+                if (choice != 1 && choice != 2 && choice != 3) {
+                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
+                } else if (choice == 1) {
+                    System.out.println("List of 30 min workouts...");
+                    workoutList = workoutService.getWorkouts(30);
+                }
+                if (choice == 2) {
+                    System.out.println("List of 45 min workouts...");
+                    workoutList = workoutService.getWorkouts(45);
+                }
+                if (choice == 3) {
+                    System.out.println("List of 60 min workouts...");
+                    workoutList = workoutService.getWorkouts(60);
+                }
+                // iterate through list to print
+                for (Workout workout : workoutList) {
+                    System.out.println(workout);
+                }
+            }
+        } while (choice != 1 && choice != 2 && choice != 3);
+        consoleMenu();
+    }
+
+    public void workoutType() {
+        int choice = 0;
+
+        do {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("1) Strength Workouts");
+            System.out.println("2) Cardio Workouts");
+            System.out.println("3) Hypertrophy Workouts");
+
+            if (scanner.hasNextInt()) {
+                choice = scanner.nextInt();
+                List<Workout> workoutList = new ArrayList<>();
+                if (choice != 1 && choice != 2 && choice != 3) {
+                    System.out.println("Selection not found. Please select either 1), 2) or 3)");
+                } else if (choice == 1) {
+                    System.out.println("List of Strength Workouts...");
+                    workoutList = workoutService.getWorkouts("strength");
+                }
+                if (choice == 2) {
+                    System.out.println("List of Cardio Workouts...");
+                    workoutList = workoutService.getWorkouts("cardio");
+                }
+                if (choice == 3) {
+                    System.out.println("List of Hypertrophy Workouts...");
+                    workoutList = workoutService.getWorkouts("hypertrophy");
+                }
+                for (Workout workout : workoutList) {
+                    System.out.println(workout);
+                }
+            }
+        } while (choice != 1 && choice != 2 && choice != 3);
+        consoleMenu();
     }
 }

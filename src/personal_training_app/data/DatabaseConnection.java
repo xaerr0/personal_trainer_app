@@ -16,7 +16,6 @@ public class DatabaseConnection {
         return connection;
     }
 
-
     private void connection(String schema) {
         String query = "";
         try {
@@ -25,8 +24,6 @@ public class DatabaseConnection {
             String username = "cono";
             String password = "hamburger";
             connection = DriverManager.getConnection(url, username, password);
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -41,5 +38,4 @@ public class DatabaseConnection {
             e.printStackTrace();
         }
     }
-
 }

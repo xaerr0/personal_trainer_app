@@ -139,5 +139,4 @@ public class TrainerService {
         }
         return trainerList;
     }
-
 }

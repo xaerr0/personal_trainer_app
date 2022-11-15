@@ -22,7 +22,7 @@ public class WorkoutService {
 
     public Workout getWorkoutId(Long id) {
         String sql = "SELECT * FROM client WHERE workoutid = " + id + ";";
-        Client client = null;
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
@@ -49,9 +49,7 @@ public class WorkoutService {
         return workouts;
     }
 
-
-        // get workout lengths
-
+    // get workout lengths
     public List<Workout> getWorkouts(int length) {
         String sql = "SELECT * FROM workout WHERE length = " + length + ";";
         List<Workout> workouts = new ArrayList<>();
@@ -67,9 +65,7 @@ public class WorkoutService {
         return workouts;
     }
 
-
     // get workout types
-
     public List<Workout> getWorkouts(String type) {
         String sql = "SELECT * FROM workout WHERE type = '" + type + "';";
         List<Workout> workouts = new ArrayList<>();
@@ -84,8 +80,6 @@ public class WorkoutService {
         }
         return workouts;
     }
-
-
 
     private List<Workout> mapToWorkout(ResultSet resultSet) throws SQLException {
         List <Workout>  workoutList = new ArrayList<>();

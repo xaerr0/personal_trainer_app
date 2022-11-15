@@ -36,7 +36,6 @@ public class ClientService {
         return client;
     }
 
-
     public Client getClient(Long id) {
         String sql = "SELECT * FROM client WHERE clientid = " + id + ";";
         Client client = null;
@@ -79,7 +78,6 @@ public class ClientService {
         }
         return clientList;
     }
-
 
     public List<Client> getAllClients() {
         String sql = "SELECT * FROM client";
@@ -142,6 +140,4 @@ public class ClientService {
         }
         return clientList;
     }
-
-
 }
