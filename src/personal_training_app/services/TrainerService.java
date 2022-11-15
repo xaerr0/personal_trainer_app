@@ -117,13 +117,9 @@ public class TrainerService {
 
     public Boolean deleteTrainer(Long id) {
         try {
-            String sql = "DELETE FROM trainer WHERE id = " + id + ";";
+            String sql = "DELETE FROM trainer WHERE trainerid = " + id + ";";
             PreparedStatement statement = connection.prepareStatement(sql);
-
-            int rowsDeleted = statement.executeUpdate();
-            if (rowsDeleted > 0) {
-                System.out.println("Trainer has been deleted successfully!");
-            }
+            statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());

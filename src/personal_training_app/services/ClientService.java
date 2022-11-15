@@ -120,13 +120,9 @@ public class ClientService {
 
     public Boolean deleteClient(Long id) {
         try {
-            String sql = "DELETE FROM client WHERE id = " + id + ";";
+            String sql = "DELETE FROM client WHERE clientid = " + id + ";";
             PreparedStatement statement = connection.prepareStatement(sql);
-
-            int rowsDeleted = statement.executeUpdate();
-            if (rowsDeleted > 0) {
-                System.out.println("Client has been deleted successfully!");
-            }
+            statement.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());

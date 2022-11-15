@@ -49,42 +49,29 @@ public class Console {
         System.out.println("5) Search Workout Program");
         System.out.println("6) Enter New Client");
         System.out.println("7) Enter New Trainer");
-        System.out.println("8) Logout");
+        System.out.println("8) Delete Client");
+        System.out.println("9) Delete Trainer");
+        System.out.println("10) Logout");
         System.out.println("Choose one (q to quit): ");
         try {
             choice = scanner.nextInt();
         } catch (InputMismatchException e) {
-            choice = 9;
+            choice = 11;
         }
         System.out.println("\n");
 
 
         switch (choice) {
             case 1:
-                System.out.println("List of Current Clients: ");
-                List<Client> clientList = clientService.getAllClients();
-                // iterate through list to print
-                for (Client clients : clientList) {
-                    System.out.println(clients);
-                }
+                listAllClients();
                 consoleMenu();
                 break;
             case 2:
-                System.out.println("List of Workout Programs: ");
-                List<Workout> workoutList = workoutService.getAllWorkouts();
-                // iterate through list to print
-                for (Workout workouts : workoutList) {
-                    System.out.println(workouts);
-                }
+                listAllWorkouts();
                 consoleMenu();
                 break;
             case 3:
-                System.out.println("List of Current Trainers: ");
-                List<Trainer> trainerList = trainerService.getAllTrainers();
-                // iterate through list to print
-                for (Trainer trainers : trainerList) {
-                    System.out.println(trainers);
-                }
+                listAllTrainers();
                 consoleMenu();
 
             case 4:
@@ -102,16 +89,85 @@ public class Console {
                 consoleMenu();
                 break;
             case 8:
-                System.out.println("Logging out...");
-                logIn();
+                listAllClients();
+                deleteClient();
                 break;
             case 9:
+                listAllTrainers();
+                deleteTrainer();
+                break;
+            case 10:
+                System.out.println("Logging out...");
+                logIn();
                 break;
             default:
                 System.out.println("Selection not found.");
                 consoleMenu();
         }
     }
+
+    private void listAllClients() {
+        System.out.println("List of Current Clients: ");
+        List<Client> clientList = clientService.getAllClients();
+        // iterate through list to print
+        for (Client clients : clientList) {
+            System.out.println(clients);
+        }
+    }
+
+    private void listAllWorkouts() {
+        System.out.println("List of Workout Programs: ");
+        List<Workout> workoutList = workoutService.getAllWorkouts();
+        // iterate through list to print
+        for (Workout workouts : workoutList) {
+            System.out.println(workouts);
+        }
+    }
+
+    private void listAllTrainers() {
+        System.out.println("List of Current Trainers: ");
+        List<Trainer> trainerList = trainerService.getAllTrainers();
+        // iterate through list to print
+        for (Trainer trainers : trainerList) {
+            System.out.println(trainers);
+        }
+    }
+
+    private void deleteClient() {
+        System.out.println("Please enter the Client ID you would like to remove.");
+        Scanner scanner = new Scanner(System.in);
+        Long id = scanner.nextLong();
+        System.out.println("Are you sure you want to delete " + clientService.getClient(id) + "? y/n?");
+        String choice = scanner.next();
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println(clientService.getClient(id) + " has been successfully deleted.");
+            clientService.deleteClient(id);
+            consoleMenu();
+
+        } else {
+            System.out.println("Back to Menu");
+            consoleMenu();
+        }
+    }
+
+    private void deleteTrainer() {
+        System.out.println("Please enter the Trainer ID you would like to remove.");
+        Scanner scanner = new Scanner(System.in);
+        Long id = scanner.nextLong();
+        System.out.println("Are you sure you want to delete " + trainerService.getTrainer(id) + "? y/n?");
+        String choice = scanner.next();
+        if (choice.equalsIgnoreCase("y")) {
+            System.out.println(trainerService.getTrainer(id) + " has been successfully deleted.");
+            trainerService.deleteTrainer(id);
+            consoleMenu();
+
+        } else {
+            System.out.println("Back to Menu");
+            consoleMenu();
+        }
+    }
+
+
 
 
     public void searchWorkout() {
