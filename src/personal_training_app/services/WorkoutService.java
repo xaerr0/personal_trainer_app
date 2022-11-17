@@ -81,6 +81,12 @@ public class WorkoutService {
         return workouts;
     }
 
+    /**
+     * Maps records from resultSet to Workout objects
+     * @param resultSet contains records from database
+     * @return lists of workouts
+     * @throws SQLException when reading resultSet
+     */
     private List<Workout> mapToWorkout(ResultSet resultSet) throws SQLException {
         List <Workout>  workoutList = new ArrayList<>();
         while (resultSet.next()) {

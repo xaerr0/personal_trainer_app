@@ -113,10 +113,14 @@ public class Console {
         }
     }
 
+    /**
+     * Pulls all workouts from the service and iterated
+     * through them and prints workouts to the console
+     */
     private void listAllWorkouts() {
         System.out.println("List of Workout Programs: ");
         List<Workout> workoutList = workoutService.getAllWorkouts();
-        // iterate through list to print
+
         for (Workout workouts : workoutList) {
             System.out.println(workouts);
         }
