@@ -41,14 +41,14 @@ public class Console {
         int choice;
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nPlease select an option: ");
-        System.out.println("1) View All Clients"); //done
-        System.out.println("2) View All Workout Programs"); //done
-        System.out.println("3) View All Trainers"); //done
-        System.out.println("4) Search a Client"); //done
+        System.out.println("1) View All Clients");
+        System.out.println("2) View All Workout Programs");
+        System.out.println("3) View All Trainers");
+        System.out.println("4) Search a Client");
         System.out.println("5) Search Workout Program");
-        System.out.println("6) Enter New Client"); //done
-        System.out.println("7) Enter New Trainer"); //done
-        System.out.println("8) Delete Client"); //
+        System.out.println("6) Enter New Client");
+        System.out.println("7) Enter New Trainer");
+        System.out.println("8) Delete Client");
         System.out.println("9) Delete Trainer");
         System.out.println("10) Logout");
         System.out.println("Choose one (q to quit): ");
