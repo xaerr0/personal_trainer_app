@@ -1,7 +1,6 @@
 # Personal Training App
 
-Here's a little app for my CodingNomads Capstone Project that would be used by the manager of a fitness gym offering a variety of fitness classes. All data is pulled
-from a SQL database where they can edit and view all their clients, trainers and workouts(classes). This program is meant to help
+Here's a little app for my CodingNomads Capstone Project that would be used by the manager of a fitness gym offering a variety of fitness classes. All data is stored in a MySQL database where they can edit and view all their clients, trainers and workouts(classes). This program is meant to help
 the manager stay organized and have all the pertinent information about their business quickly and easily accessable.
 
 
