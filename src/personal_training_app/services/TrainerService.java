@@ -115,6 +115,11 @@ public class TrainerService {
         return false;
     }
 
+    /**
+     * Deletes Trainer by id
+     * @param id
+     * @return
+     */
     public Boolean deleteTrainer(Long id) {
         try {
             String sql = "DELETE FROM trainer WHERE trainerid = " + id + ";";
@@ -127,6 +132,12 @@ public class TrainerService {
         return false;
     }
 
+    /**
+     * Maps records from resultSet to Trainer objects
+     * @param resultSet contains records from database
+     * @return lists of trainers
+     * @throws SQLException when reading resultSet
+     */
     private List<Trainer> mapToTrainer(ResultSet resultSet) throws SQLException {
         List<Trainer> trainerList = new ArrayList<>();
         while (resultSet.next()) {

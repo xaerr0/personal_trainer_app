@@ -128,6 +128,12 @@ public class ClientService {
         return false;
     }
 
+    /**
+     * Maps records from resultSet to Client objects
+     * @param resultSet contains records from database
+     * @return lists of clients
+     * @throws SQLException when reading resultSet
+     */
     public List<Client> mapToClient(ResultSet resultSet) throws SQLException {
         List<Client> clientList = new ArrayList<>();
         while (resultSet.next()) {
