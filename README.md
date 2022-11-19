@@ -6,4 +6,5 @@ Here's a little app for my CodingNomads Capstone Project that would be used by t
 
 
 Screenshot of the console after login.
+
 ![App Screenshot](https://user-images.githubusercontent.com/102835438/202514855-b82a6c17-210a-422d-9282-906689bf7a2f.png)
