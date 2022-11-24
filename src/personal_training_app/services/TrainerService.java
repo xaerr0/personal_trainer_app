@@ -116,9 +116,9 @@ public class TrainerService {
     }
 
     /**
-     * Deletes Trainer by id
-     * @param id
-     * @return
+     * Deletes trainer from database
+     * @param id of trainer to be deleted
+     * @return true if successfully deleted
      */
     public Boolean deleteTrainer(Long id) {
         try {
@@ -128,6 +128,7 @@ public class TrainerService {
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
+            return false;
         }
         return false;
     }

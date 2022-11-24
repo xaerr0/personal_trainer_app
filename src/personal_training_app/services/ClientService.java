@@ -115,7 +115,11 @@ public class ClientService {
         }
         return false;
     }
-
+    /**
+     * Deletes trainer from database
+     * @param id of client to be deleted
+     * @return true if successfully deleted
+     */
     public Boolean deleteClient(Long id) {
         try {
             String sql = "DELETE FROM client WHERE clientid = " + id + ";";
@@ -124,6 +128,7 @@ public class ClientService {
         } catch (SQLException e) {
             System.out.println("Exception Thrown!");
             System.out.println(e.getMessage());
+            return false;
         }
         return false;
     }
