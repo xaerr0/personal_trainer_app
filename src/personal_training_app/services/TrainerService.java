@@ -79,6 +79,10 @@ public class TrainerService {
         return trainerList;
     }
 
+    /**
+     * Gets all trainers from database
+     * @return list of all trainers
+     */
     public List<Trainer> getAllTrainers() {
         String sql = "SELECT * FROM trainer";
         List<Trainer> trainers = new ArrayList<>();
@@ -93,6 +97,7 @@ public class TrainerService {
         }
         return trainers;
     }
+
 
     public Boolean updateTrainer(Trainer trainer) {
         String sql = "UPDATE trainer SET first_name = ?, last_name = ?, email = ?, WHERE id = ?";

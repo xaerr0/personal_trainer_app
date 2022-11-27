@@ -78,7 +78,10 @@ public class ClientService {
         }
         return clientList;
     }
-
+    /**
+     * Gets all clients from database
+     * @return list of all clients
+     */
     public List<Client> getAllClients() {
         String sql = "SELECT * FROM client";
         List<Client> clients = new ArrayList<>();
@@ -116,7 +119,7 @@ public class ClientService {
         return false;
     }
     /**
-     * Deletes trainer from database
+     * Deletes client from database
      * @param id of client to be deleted
      * @return true if successfully deleted
      */

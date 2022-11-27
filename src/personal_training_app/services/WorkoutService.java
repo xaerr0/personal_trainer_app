@@ -33,7 +33,10 @@ public class WorkoutService {
         }
         return new Workout();
     }
-
+    /**
+     * Gets all workouts from database
+     * @return list of all workouts
+     */
     public List<Workout> getAllWorkouts() {
         String sql = "SELECT * FROM workout;";
         List<Workout> workouts = new ArrayList<>();
