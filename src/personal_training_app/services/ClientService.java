@@ -97,6 +97,11 @@ public class ClientService {
         return clients;
     }
 
+    /**
+     * Updates client from database
+     * @param client to be updated
+     * @return true if successfully updated
+     */
     public Boolean updateClient(Client client) {
         String sql = "UPDATE client SET first_name = ?, last_name = ?, email = ?, WHERE id = ?";
 
