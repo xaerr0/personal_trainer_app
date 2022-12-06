@@ -36,6 +36,11 @@ public class TrainerService {
         return trainer;
     }
 
+    /**
+     * Gets trainer(s) from database by last name
+     * @param id of trainer(s)
+     * @return trainer(s)
+     */
     public Trainer getTrainer(Long id) {
         String sql = "SELECT * FROM trainer WHERE trainerid = " + id + ";";
         Trainer trainer = null;
@@ -50,6 +55,11 @@ public class TrainerService {
         return trainer;
     }
 
+    /**
+     * Gets trainer from database by email address
+     * @param email of client to return
+     * @return a trainer
+     */
     public Trainer getTrainer(String email) {
         String sql = "SELECT * FROM trainer WHERE email = ?";
         Trainer trainer = null;

@@ -65,6 +65,11 @@ public class ClientService {
         return client;
     }
 
+    /**
+     * Gets client(s) from database by last name
+     * @param lastName of client(s)
+     * @return list of client(s)
+     */
     public List<Client> getClients(String lastName) {
         String sql = "SELECT * FROM client WHERE last_name LIKE '" + lastName + "%';";
         List<Client> clientList = new ArrayList<>();
