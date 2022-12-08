@@ -50,6 +50,11 @@ public class ClientService {
         return client;
     }
 
+    /**
+     * Gets client from database by email address
+     * @param email of client to return
+     * @return a client
+     */
     public Client getClient(String email) {
         String sql = "SELECT * FROM client WHERE email = ?" ;
         Client client = null;

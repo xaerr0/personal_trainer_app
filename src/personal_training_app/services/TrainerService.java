@@ -57,7 +57,7 @@ public class TrainerService {
 
     /**
      * Gets trainer from database by email address
-     * @param email of client to return
+     * @param email of trainer to return
      * @return a trainer
      */
     public Trainer getTrainer(String email) {
