@@ -19,6 +19,11 @@ public class TrainerService {
         connection = databaseConnection.getConnection();
     }
 
+    /**
+     * Inserts a trainer into the database
+     * @param trainer by first name, last name, and email
+     * @return trainer
+     */
     public Trainer saveTrainer(Trainer trainer) {
         String sql = "INSERT INTO trainer (first_name, last_name, email) VALUES (?, ?, ?)";
         PreparedStatement statement = null;
