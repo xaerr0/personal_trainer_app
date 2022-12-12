@@ -19,6 +19,11 @@ public class ClientService {
         connection = databaseConnection.getConnection();
     }
 
+    /**
+     * Inserts a client into the database
+     * @param client by first name, last name and email
+     * @return client
+     */
     public Client saveClient(Client client) {
         String sql = "INSERT INTO client (first_name, last_name, email) VALUES (?, ?, ?);";
         PreparedStatement statement = null;
@@ -36,6 +41,11 @@ public class ClientService {
         return client;
     }
 
+    /**
+     * Gets client from database by id
+     * @param id of client(s)
+     * @return a client
+     */
     public Client getClient(Long id) {
         String sql = "SELECT * FROM client WHERE clientid = " + id + ";";
         Client client = null;
