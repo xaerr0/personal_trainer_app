@@ -52,7 +52,11 @@ public class WorkoutService {
         return workouts;
     }
 
-    // get workout lengths
+    /**
+     * Gets list of workouts from database by length
+     * @param length of workouts
+     * @return list of workouts
+     */
     public List<Workout> getWorkouts(int length) {
         String sql = "SELECT * FROM workout WHERE length = " + length + ";";
         List<Workout> workouts = new ArrayList<>();
@@ -68,7 +72,11 @@ public class WorkoutService {
         return workouts;
     }
 
-    // get workout types
+    /**
+     * Gets list of workouts from database by workout type
+     * @param type of workouts
+     * @return list of workouts
+     */
     public List<Workout> getWorkouts(String type) {
         String sql = "SELECT * FROM workout WHERE type = '" + type + "';";
         List<Workout> workouts = new ArrayList<>();
