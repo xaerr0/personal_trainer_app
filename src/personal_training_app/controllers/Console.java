@@ -19,6 +19,10 @@ public class Console {
     TrainerService trainerService = new TrainerService();
 
     // Main menu
+
+    /**
+     * Menu to login using trainer Id
+     */
     public void logIn() {
         Scanner scanner = new Scanner(System.in);
         try {
