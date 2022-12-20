@@ -40,7 +40,10 @@ public class Console {
             logIn();
         }
     }
-    // After Login
+
+    /**
+     * Main console menu
+     */
     public void consoleMenu() {
         int choice;
         Scanner scanner = new Scanner(System.in);
