@@ -111,6 +111,10 @@ public class Console {
         }
     }
 
+    /**
+     * Pulls list for clients from the service and iterates
+     * through them and prints clients to the console
+     */
     private void listAllClients() {
         System.out.println("List of Current Clients: ");
         List<Client> clientList = clientService.getAllClients();
@@ -121,7 +125,7 @@ public class Console {
     }
 
     /**
-     * Pulls all workouts from the service and iterated
+     * Pulls all workouts from the service and iterates
      * through them and prints workouts to the console
      */
     private void listAllWorkouts() {
