@@ -112,7 +112,7 @@ public class Console {
     }
 
     /**
-     * Pulls list for clients from the service and iterates
+     * Pulls list for clients from the service, iterates
      * through them and prints clients to the console
      */
     private void listAllClients() {
@@ -125,8 +125,8 @@ public class Console {
     }
 
     /**
-     * Pulls all workouts from the service and iterates
-     * through them and prints workouts to the console
+     * Pulls list for workouts from the service, iterates
+     * through them and prints clients to the console
      */
     private void listAllWorkouts() {
         System.out.println("List of Workout Programs: ");
@@ -137,6 +137,10 @@ public class Console {
         }
     }
 
+    /**
+     * Pulls list for trainers from the service, iterates
+     * through them and prints clients to the console
+     */
     private void listAllTrainers() {
         System.out.println("List of Current Trainers: ");
         List<Trainer> trainerList = trainerService.getAllTrainers();
