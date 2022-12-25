@@ -150,6 +150,10 @@ public class Console {
         }
     }
 
+    /**
+     * Menu to choose an option to search through clients
+     * by Id or Last Name
+     */
     public void searchClient() {
         int choice = 0;
         Long clientId = null;
