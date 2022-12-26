@@ -167,14 +167,17 @@ public class Console {
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
+                // if 1, 2, or 3 is not selected
                 if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1) or 2)");
+                    // to search by Client ID
                 } else if (choice == 1) {
                     System.out.println("Please Enter Client ID");
                     clientId = scanner.nextLong();
                     Client client = clientService.getClient(clientId);
                     System.out.println(client);
                 }
+                // to search by last name
                 if (choice == 2) {
                     System.out.println("Please Enter Last Name");
                     lastName = scanner.next();
@@ -190,6 +193,9 @@ public class Console {
         consoleMenu();
     }
 
+    /**
+     *
+     */
     public void searchWorkout() {
         int choice = 0;
 
