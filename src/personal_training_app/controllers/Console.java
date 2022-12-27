@@ -167,7 +167,7 @@ public class Console {
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                // if 1, 2, or 3 is not selected
+                // if 1, 2, or 3 is not selected, repeat request
                 if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1) or 2)");
                     // to search by Client ID
@@ -194,7 +194,8 @@ public class Console {
     }
 
     /**
-     *
+     * Menu to choose an option to search through workouts
+     * by length or type
      */
     public void searchWorkout() {
         int choice = 0;
