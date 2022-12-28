@@ -185,6 +185,7 @@ public class Console {
                     for (Client clientList : clients)
                         System.out.println(clientList);
                 }
+                // go back to menu
                 if (choice == 3) {
                     consoleMenu();
                 }
@@ -209,14 +210,18 @@ public class Console {
 
             if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
+                // if neither 1,2 or 3 chosen, repeat request
                 if (choice != 1 && choice != 2 && choice != 3) {
                     System.out.println("Selection not found. Please select either 1) or 2)");
+                    // search for workout by length
                 } else if (choice == 1) {
                     workoutLength();
                 }
+                // search workout by type
                 if (choice == 2) {
                     workoutType();
                 }
+                // go back to menu
                 if (choice == 3) {
                     consoleMenu();
                 }
@@ -224,6 +229,9 @@ public class Console {
         } while (choice != 1 && choice != 2);
     }
 
+    /**
+     * Enter a new client into the database
+     */
     private void newClient() {
 
         Scanner scanner = new Scanner(System.in);
