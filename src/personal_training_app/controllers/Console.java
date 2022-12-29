@@ -257,6 +257,9 @@ public class Console {
         }
     }
 
+    /**
+     * Enter a new trainer into the database
+     */
     private void newTrainer() {
 
         Scanner scanner = new Scanner(System.in);
