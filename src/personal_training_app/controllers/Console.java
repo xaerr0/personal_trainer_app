@@ -306,6 +306,9 @@ public class Console {
         }
     }
 
+    /**
+     * Delete a trainer from the database
+     */
     private void deleteTrainer() {
         System.out.println("Please enter the Trainer ID you would like to remove.");
         Scanner scanner = new Scanner(System.in);
