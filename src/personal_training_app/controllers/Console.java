@@ -274,6 +274,7 @@ public class Console {
         System.out.println(trainer);
         System.out.println("Is this correct? y/n?");
         String choice = scanner.next();
+        // ignore lower case inputs
         if (choice.equalsIgnoreCase("y")) {
             Trainer savedTrainer = trainerService.saveTrainer(trainer);
             System.out.println(savedTrainer);
@@ -285,6 +286,9 @@ public class Console {
         }
     }
 
+    /**
+     * Delete a client from the database
+     */
     private void deleteClient() {
         System.out.println("Please enter the Client ID you would like to remove.");
         Scanner scanner = new Scanner(System.in);
