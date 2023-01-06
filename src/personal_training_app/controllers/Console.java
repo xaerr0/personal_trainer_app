@@ -326,6 +326,9 @@ public class Console {
         }
     }
 
+    /**
+     * Menu to find workout by length
+     */
     public void workoutLength() {
         int choice = 0;
 
