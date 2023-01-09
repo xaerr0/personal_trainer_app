@@ -366,6 +366,9 @@ public class Console {
         consoleMenu();
     }
 
+    /**
+     * Menu to find workouts by type
+     */
     public void workoutType() {
         int choice = 0;
 
