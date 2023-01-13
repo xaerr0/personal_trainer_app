@@ -237,20 +237,26 @@ public class Console {
         Scanner scanner = new Scanner(System.in);
         Client client = new Client();
 
+        // enter first name
         System.out.println("Please Enter Client's First Name");
         client.setFirstName(scanner.nextLine());
+        // enter last name
         System.out.println("Please Enter Client's Last Name");
         client.setLastName(scanner.nextLine());
+        // enter email address
         System.out.println("Please Enter Client's Email");
         client.setEmail(scanner.nextLine());
+        // verify information input is correct
         System.out.println(client);
         System.out.println("Is this correct? y/n?");
         String choice = scanner.next();
         if (choice.equalsIgnoreCase("y")) {
+            // save to database
             Client savedClient = clientService.saveClient(client);
             System.out.println(savedClient);
             System.out.println(client.getFirstName() + " " + client.getLastName() +
                                " has been saved to the database");
+            // otherwise back to menu
         } else {
             System.out.println("Back to Menu");
             consoleMenu();
