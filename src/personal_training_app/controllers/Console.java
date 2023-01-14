@@ -250,6 +250,7 @@ public class Console {
         System.out.println(client);
         System.out.println("Is this correct? y/n?");
         String choice = scanner.next();
+        // ignore lowercase inputs
         if (choice.equalsIgnoreCase("y")) {
             // save to database
             Client savedClient = clientService.saveClient(client);
@@ -271,21 +272,27 @@ public class Console {
         Scanner scanner = new Scanner(System.in);
         Trainer trainer = new Trainer();
 
+        // enter first name
         System.out.println("Please Enter Trainer's First Name");
         trainer.setFirstName(scanner.nextLine());
+        // enter last name
         System.out.println("Please Enter Trainer's Last Name");
         trainer.setLastName(scanner.nextLine());
+        // enter email address
         System.out.println("Please Enter Trainer's Email");
         trainer.setEmail(scanner.nextLine());
         System.out.println(trainer);
+        // verify information input is correct
         System.out.println("Is this correct? y/n?");
         String choice = scanner.next();
-        // ignore lower case inputs
+        // ignore lowercase inputs
         if (choice.equalsIgnoreCase("y")) {
+            // save to database
             Trainer savedTrainer = trainerService.saveTrainer(trainer);
             System.out.println(savedTrainer);
             System.out.println(trainer.getFirstName() + " " + trainer.getLastName() +
                                " has been saved to the database");
+            // otherwise back to menu
         } else {
             System.out.println("Back to Menu");
             consoleMenu();
