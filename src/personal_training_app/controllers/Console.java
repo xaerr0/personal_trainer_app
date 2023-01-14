@@ -300,20 +300,24 @@ public class Console {
     }
 
     /**
-     * Delete a client from the database
+     * Delete a client by id from the database
      */
     private void deleteClient() {
+        // enter client id to remove
         System.out.println("Please enter the Client ID you would like to remove.");
         Scanner scanner = new Scanner(System.in);
         Long id = scanner.nextLong();
+        // verify client pulled is correct
         System.out.println("Are you sure you want to delete " + clientService.getClient(id) + "? y/n?");
         String choice = scanner.next();
+        // ignore lowercase inputs
         if (choice.equalsIgnoreCase("y")) {
             System.out.println(clientService.getClient(id) + " has been successfully deleted.");
             clientService.deleteClient(id);
             consoleMenu();
 
         } else {
+            // back to menu
             System.out.println("Back to Menu");
             consoleMenu();
         }
